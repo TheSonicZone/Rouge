@@ -1,2 +1,2 @@
 # Rouge
-Rouge - A replacement for Logitech's Squeezebox
+## Rouge - A replacement for Logitech's Squeezebox

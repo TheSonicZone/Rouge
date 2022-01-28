@@ -122,18 +122,14 @@ void PendSV_Handler(void)
   /* USER CODE END PendSV_IRQn 1 */
 }
 
-/**
-  * @brief This function handles System tick timer.
-  */
-void SysTick_Handler(void)
-{
-  /* USER CODE BEGIN SysTick_IRQn 0 */
+//------------------------------
+// System Ticker ISR
+//------------------------------
+void SysTick_Handler(void){
 
-  /* USER CODE END SysTick_IRQn 0 */
   HAL_IncTick();
-  /* USER CODE BEGIN SysTick_IRQn 1 */
+  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_0);		// Toggle PC0 at the ticker rate
 
-  /* USER CODE END SysTick_IRQn 1 */
 }
 
 /******************************************************************************/

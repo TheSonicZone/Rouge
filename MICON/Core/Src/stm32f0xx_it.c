@@ -15,11 +15,11 @@
   *
   ******************************************************************************
   */
-/* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f0xx_it.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 /* USER CODE END Includes */
@@ -59,9 +59,6 @@ extern SPI_HandleTypeDef hspi1;
 extern TIM_HandleTypeDef htim1;
 extern TIM_HandleTypeDef htim7;
 extern UART_HandleTypeDef huart1;
-/* USER CODE BEGIN EV */
-
-/* USER CODE END EV */
 
 /******************************************************************************/
 /*           Cortex-M0 Processor Interruption and Exception Handlers          */
@@ -122,9 +119,10 @@ void PendSV_Handler(void)
   /* USER CODE END PendSV_IRQn 1 */
 }
 
-//------------------------------
+//-------------------------------------------------------------------------------
 // System Ticker ISR
-//------------------------------
+// Called every 1mS (Verified with scope)
+//-------------------------------------------------------------------------------
 void SysTick_Handler(void){
 
   HAL_IncTick();

@@ -13,12 +13,13 @@ play FLAC files from any typical network share including NAS devices
 - Ability to work with USB attached sound cards e.g. ASUS XONAR MK 2
 
 ### Project Structure
- This project is broken up into two key areas:
- - Service application running on Armbian as a daemon, which handles the network share mounting, manages Audacious in headless mode, playlist, and sound sink
+Project consists of a standard ARMBIAN installation (with software installed) on the OrangePi. The serial port mates with a UART on the STM32.
+The STM32F072RB implements the MICON
  - MICON (Man Interface CONtrol) that drives the LCD display, reads the optical encoder and power button, reads the IR sensor, and controls the DIR chip (digital interface receiver)
 
-The service application is written in C compiled with Code::Blocks for the armhf target and requires the arm-linux-gnueabihf GCC compiler to be installed.
-The MICON application is written in C which is a project for the STM32CubeIDE (ARM Cortex M0). This may include libraries such as CMSIS and is dependent on ST Micro's libraries for the micro's peripherals. The latter is subject to change and what may work now may be broken in 2 years' time because ST Microelectronics has consistently changed the libraries over the years. When in doubt, clone the whole project!
+The MICON application is written in C which is compiled using Atollic TrueSTUDIO*. This requires creation of an initial project and then transplantation of CMSIS and
+the STM32F072 Standard Peripheral Libraries. Note that we DO NOT USE STM32CubeIDE at this time because a) the HAL gets in the way of us doing real hardware driving and
+b) any change to the device peripherals is not easy because the HAL is in the way. If you change it using the IOC file, it rubs out all your code. Pretty dumb!
 
 ### Linux
 This project is designed to work with Armbian Focal. A number of steps are required to be performed (specifically armbian-config), as well as installation of software on the boot medium. A complete ready-to-run SD card image will be provided. However note that the OrangePi Zero requires a small hardware modification to gain access to the S/PDIF output on the AllWinner H2.
